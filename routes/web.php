@@ -34,7 +34,7 @@ Route::match(['get','post'], '/admin/delete-category/{id}', 'CategoryController@
 Route::match(['get', 'post'], '/admin/add-product', 'ProductsController@addProduct');
 Route::get('admin/view-products', 'ProductsController@viewProducts');
 Route::match(['get', 'post'], '/admin/edit-product/{id}', 'ProductsController@editProduct');
-
+Route::get('/admin/delete-product-image/{id}', 'ProductsController@deleteProductImage');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
