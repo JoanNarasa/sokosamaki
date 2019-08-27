@@ -49,7 +49,7 @@
                                 <td>
                                     <div class="fr">
                                         <a href="{{ url('/admin/edit-category/'.$category->id)}}" class="btn btn-primary btn-mini">Edit</a> 
-                                        <a id="delCat" href="{{ url('/admin/delete-category/'.$category->id)}}" class="btn btn-danger btn-mini">Delete</a>
+                                        <a <?php /* id="delCat" href="{{ url('/admin/delete-category/'.$category->id)}}" */ ?> rel="{{ $category->id }}" rel1="delete-category" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Delete</a>
                                     </div>
                                 </td>
                             </tr> 

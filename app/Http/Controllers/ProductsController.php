@@ -71,6 +71,7 @@ class ProductsController extends Controller
             return redirect('/admin')->with('flash_message_error', 'Please login to access');
         }
     }
+
     public function viewProducts(Request $request){
         if(Session::has('adminSession')){
             $products = Product::get();
@@ -91,9 +92,7 @@ class ProductsController extends Controller
         if(Session::has('adminSession')){
             if($request->isMethod('post')){
                 $data=$request->all();
-                // echo "<pre>"; print_r($data); die;
 
-                //upload image
                 if($request->hasFile('image')){
                     $image_tmp = Input::file('image');
                     if($image_tmp->isValid()){
@@ -154,6 +153,7 @@ class ProductsController extends Controller
             return redirect('/admin')->with('flash_message_error', 'Please login to access');
         }
     }
+
     public function deleteProductImage($id = null){
         if (Session::has('adminSession')){
             Product::where(['id'=>$id])->update(['image'=>'']);
@@ -163,4 +163,16 @@ class ProductsController extends Controller
             return redirect('/admin')->with('flash_message_error', 'Please login to access');
         }
     }
+
+    public function deleteProduct($id=null){
+        if(Session::has('adminSession')){
+            Product::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success', 'Product Deleted Successfully');
+        }
+        else{
+            return redirect('/admin')->with('flash_message_error', 'Please login to access');
+        }
+    }
+
+
 }

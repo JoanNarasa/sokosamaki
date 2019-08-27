@@ -1,7 +1,6 @@
 $(document).ready(function() {
-
-    $("#new_pwd").click(function() {
-        var current_pwd = $("#current_pwd").val();
+    $('#new_pwd').click(function() {
+        var current_pwd = $('#current_pwd').val();
         $.ajax({
             type: 'get',
             url: '/admin/check-pwd',
@@ -10,15 +9,18 @@ $(document).ready(function() {
             },
             success: function(resp) {
                 // alert(resp);
-                if (resp == "false") {
-                    $("#chkPwd").html("<font color='red'>Current Password is Incorrect</font>");
-                } else if (resp == "true") {
-                    $("#chkPwd").html("<font color='green'>Current Password is Correct</font>");
+                if (resp == 'false') {
+                    $('#chkPwd').html(
+                        "<font color='red'>Current Password is Incorrect</font>"
+                    );
+                } else if (resp == 'true') {
+                    $('#chkPwd').html(
+                        "<font color='green'>Current Password is Correct</font>"
+                    );
                 }
-
             },
             error: function() {
-                alert("Error");
+                alert('Error');
             }
         });
     });
@@ -28,7 +30,7 @@ $(document).ready(function() {
     $('select').select2();
 
     // Form Validation
-    $("#basic_validate").validate({
+    $('#basic_validate').validate({
         rules: {
             required: {
                 required: true
@@ -46,19 +48,25 @@ $(document).ready(function() {
                 url: true
             }
         },
-        errorClass: "help-inline",
-        errorElement: "span",
+        errorClass: 'help-inline',
+        errorElement: 'span',
         highlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').addClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('error');
         },
         unhighlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').removeClass('error');
-            $(element).parents('.control-group').addClass('success');
+            $(element)
+                .parents('.control-group')
+                .removeClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('success');
         }
     });
 
     //Add Category Validation
-    $("#add_category").validate({
+    $('#add_category').validate({
         rules: {
             category_name: {
                 required: true
@@ -70,20 +78,25 @@ $(document).ready(function() {
                 required: true
             }
         },
-        errorClass: "help-inline",
-        errorElement: "span",
+        errorClass: 'help-inline',
+        errorElement: 'span',
         highlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').addClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('error');
         },
         unhighlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').removeClass('error');
-            $(element).parents('.control-group').addClass('success');
+            $(element)
+                .parents('.control-group')
+                .removeClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('success');
         }
     });
 
-
     //Edit Product Validation
-    $("#edit_product").validate({
+    $('#edit_product').validate({
         rules: {
             category_id: {
                 required: true
@@ -100,20 +113,26 @@ $(document).ready(function() {
             price: {
                 required: true,
                 number: true
-            },
+            }
         },
-        errorClass: "help-inline",
-        errorElement: "span",
+        errorClass: 'help-inline',
+        errorElement: 'span',
         highlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').addClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('error');
         },
         unhighlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').removeClass('error');
-            $(element).parents('.control-group').addClass('success');
+            $(element)
+                .parents('.control-group')
+                .removeClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('success');
         }
     });
 
-    $("#number_validate").validate({
+    $('#number_validate').validate({
         rules: {
             min: {
                 required: true,
@@ -128,18 +147,24 @@ $(document).ready(function() {
                 number: true
             }
         },
-        errorClass: "help-inline",
-        errorElement: "span",
+        errorClass: 'help-inline',
+        errorElement: 'span',
         highlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').addClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('error');
         },
         unhighlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').removeClass('error');
-            $(element).parents('.control-group').addClass('success');
+            $(element)
+                .parents('.control-group')
+                .removeClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('success');
         }
     });
 
-    $("#password_validate").validate({
+    $('#password_validate').validate({
         rules: {
             current_pwd: {
                 required: true,
@@ -155,24 +180,57 @@ $(document).ready(function() {
                 required: true,
                 minlength: 6,
                 maxlength: 20,
-                equalTo: "#new_pwd"
+                equalTo: '#new_pwd'
             }
         },
-        errorClass: "help-inline",
-        errorElement: "span",
+        errorClass: 'help-inline',
+        errorElement: 'span',
         highlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').addClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('error');
         },
         unhighlight: function(element, errorClass, validClass) {
-            $(element).parents('.control-group').removeClass('error');
-            $(element).parents('.control-group').addClass('success');
+            $(element)
+                .parents('.control-group')
+                .removeClass('error');
+            $(element)
+                .parents('.control-group')
+                .addClass('success');
         }
     });
 
-    $("#delCat").click(function() {
-        if (confirm('Are you sure you want to delete this Category?')) {
-            return true;
-        }
-        return false;
+    // $('#delCat').click(function() {
+    //     if (confirm('Are you sure you want to delete this Category?')) {
+    //         return true;
+    //     }
+    //     return false;
+    // });
+
+
+
+    // $("#delProduct").click(function() {
+    //     if (confirm('Are you sure you want to delete this Product?')) {
+    //         return true;
+    //     }
+    //     return false;
+    // });
+
+    $('.deleteRecord').click(function() {
+        var id = $(this).attr('rel');
+        var deleteFunction = $(this).attr('rel1');
+        swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            },
+            function() {
+                window.location.href = '/admin/' + deleteFunction + '/' + id;
+            }
+        );
     });
 });
