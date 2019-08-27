@@ -9,6 +9,7 @@ use Auth;
 use App\Product;
 use Illuminate\Support\Facades\Input;
 use Image;
+use App\ProductsAttribute;
 
 class ProductsController extends Controller
 {
@@ -168,6 +169,46 @@ class ProductsController extends Controller
         if(Session::has('adminSession')){
             Product::where(['id'=>$id])->delete();
             return redirect()->back()->with('flash_message_success', 'Product Deleted Successfully');
+        }
+        else{
+            return redirect('/admin')->with('flash_message_error', 'Please login to access');
+        }
+    }
+    
+    public function addAttributes(Request $request, $id=null){
+        if(Session::has('adminSession')){
+            $productDetails = Product::with('attributes')->where(['id'=>$id])->first();
+            // $productDetails = json_decode(json_encode($productDetails));
+          //echo "<pre>"; print_r($productDetails);die;
+
+            if($request->isMethod('post')){
+                $data = $request->all();
+                //echo "<pre>"; print_r($data); die;
+                foreach($data ['sku'] as $key=>$val){
+                    if(!empty($val)){
+                        $attribute = new ProductsAttribute;
+                        $attribute->product_id = $id;
+                        $attribute->sku = $val;
+                        $attribute->size = $data['size'][$key];
+                        $attribute->price = $data['price'][$key];
+                        $attribute->stock = $data['stock'][$key];
+                        $attribute->save();
+                    }
+                }
+                return redirect('/admin/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes Added Successfully!');
+            }
+            return view('admin.products.add_attributes')->with(compact('productDetails'));
+
+        }
+        else {
+            return redirect('/admin')->with('flash_message_error', 'Please login to access');
+        }
+    }
+
+    public function deleteAttribute($id=null){
+        if(Session::has('adminSession')){
+            ProductsAttribute::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Attribute Deleted Successfully!');
         }
         else{
             return redirect('/admin')->with('flash_message_error', 'Please login to access');

@@ -38,6 +38,7 @@ Route::get('/admin/delete-product-image/{id}', 'ProductsController@deleteProduct
 Route::get('/admin/delete-product/{id}','ProductsController@deleteProduct');
 
 Route::match(['get', 'post'], '/admin/add-attributes/{id}', 'ProductsController@addAttributes');
+Route::get('admin/delete-attribute/{id}', 'ProductsController@deleteAttribute'); 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
